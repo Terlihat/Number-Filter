@@ -6,13 +6,12 @@
     <title>Number Filter Tool - Dark Mode</title>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Number Filter Tool</h1>
-        <p class="version-tag">Version 1.3.0 | Desktop Optimized & Feature-Rich</p>
+        <p class="version-tag">Version 1.4.0 | Desktop Optimized & Duplicate Detector</p>
     </header>
 
     <main class="container">
@@ -20,9 +19,6 @@
             <div class="col-header">
                 <label for="input1">Input 1 (Data Utama):</label>
                 <div class="header-actions">
-                    <label class="checkbox-container">
-                        <input type="checkbox" id="dedupCheck"> Hapus Duplikat
-                    </label>
                     <button class="btn-small btn-upload" onclick="triggerUpload('fileInput1')">Upload</button>
                     <button class="btn-small btn-clear" id="clearInput1">Clear</button>
                 </div>
@@ -54,7 +50,7 @@
             </div>
             <textarea id="output" readonly placeholder="Hasil filter akan muncul di sini..."></textarea>
             
-            <div id="stats" class="stats"><strong>Total awal:</strong> 0 | <strong>Cocok (Merah):</strong> 0 | <strong>Sisa (Hijau):</strong> 0</div>
+            <div id="stats" class="stats"><strong>Menunggu proses...</strong></div>
             
             <div class="action-buttons">
                 <button id="copyBtn" class="btn-action">Salin Teks</button>
