@@ -1,4 +1,4 @@
-/* Versi Code: v1.3.0 */
+/* Versi Code: v1.4.0 */
 
 :root {
     --bg-color: #121212;
@@ -12,14 +12,11 @@
     /* Status Warna (Mark) */
     --mark-red: #cf6679;
     --mark-green: #4caf50;
-    --mark-yellow: #fbc02d; /* Warna untuk error/bukan 16 digit */
+    --mark-yellow: #fbc02d;
+    --mark-purple: #b388ff; /* Warna ungu untuk duplikat */
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-color);
@@ -37,15 +34,8 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
-header h1 {
-    font-size: 1.6rem;
-    color: var(--primary-color);
-}
-
-.version-tag {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
+header h1 { font-size: 1.6rem; color: var(--primary-color); }
+.version-tag { font-size: 0.85rem; color: var(--text-muted); }
 
 .container {
     display: grid;
@@ -55,40 +45,12 @@ header h1 {
     flex: 1;
 }
 
-.col {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+.col { display: flex; flex-direction: column; gap: 10px; }
+.col-header { display: flex; justify-content: space-between; align-items: center; }
+label { font-weight: 600; font-size: 0.9rem; }
 
-.col-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.header-actions { display: flex; gap: 8px; align-items: center; }
 
-label {
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* Header kecil untuk tombol aksi tambahan */
-.header-actions {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.checkbox-container {
-    font-size: 0.8rem;
-    color: var(--text-color);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* Tombol kecil di atas header */
 .btn-small {
     padding: 3px 8px;
     font-size: 0.75rem;
@@ -101,7 +63,6 @@ label {
 .btn-clear:hover { background-color: #cf6679; color: #000; border-color: #cf6679; }
 .btn-upload:hover { background-color: #03dac6; color: #000; border-color: #03dac6; }
 
-/* Textarea & Editor */
 textarea, .custom-textarea {
     flex: 1;
     min-height: 430px;
@@ -124,16 +85,13 @@ textarea:focus, .custom-textarea:focus { border-color: var(--primary-color); }
 textarea[readonly] { background-color: #161616; }
 .custom-textarea:empty:before { content: attr(placeholder); color: var(--text-muted); }
 
-/* Fitur Efek Drag over saat file ditarik ke dalam box */
 .drag-over {
     border: 2px dashed var(--primary-color) !important;
     background-color: rgba(187, 134, 252, 0.05);
 }
 
-/* LOGIKA PENOMORAN BARIS (Line Numbers) MENGGUNAKAN CSS COUNTER - AMAN TANPA BUG */
-.custom-textarea {
-    counter-reset: line-node;
-}
+/* Penomoran Baris */
+.custom-textarea { counter-reset: line-node; }
 .custom-textarea > div {
     position: relative;
     padding-left: 45px;
@@ -143,8 +101,7 @@ textarea[readonly] { background-color: #161616; }
     counter-increment: line-node;
     content: counter(line-node);
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 0; top: 0;
     width: 30px;
     text-align: right;
     color: var(--text-muted);
@@ -158,8 +115,8 @@ textarea[readonly] { background-color: #161616; }
 .match-red { color: var(--mark-red); font-weight: bold; }
 .nomatch-green { color: var(--mark-green); }
 .warning-yellow { color: var(--mark-yellow); font-weight: bold; background-color: rgba(253, 216, 53, 0.1); }
+.duplicate-purple { color: var(--mark-purple); font-weight: bold; font-style: italic; background-color: rgba(179, 136, 255, 0.1); }
 
-/* Desain Tombol Utama */
 button, .btn-action {
     background-color: var(--primary-color);
     color: #000;
@@ -175,20 +132,18 @@ button, .btn-action {
 button:hover, .btn-action:hover { background-color: var(--primary-hover); }
 button:active, .btn-action:active { transform: scale(0.99); }
 
-/* Layout Statistik */
 .stats {
-    font-size: 0.82rem;
-    color: var(--primary-color);
+    font-size: 0.8rem;
+    color: var(--text-color);
     text-align: left;
     padding: 10px;
     background-color: rgba(187, 134, 252, 0.04);
     border-left: 3px solid var(--primary-color);
     border-radius: 4px;
     margin-top: 2px;
-    line-height: 1.4;
+    line-height: 1.6;
 }
 
-/* Grid Tombol Salin & Unduh */
 .action-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
