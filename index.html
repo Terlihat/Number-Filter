@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Filter Tool - Dark Mode</title>
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Number Filter Tool</h1>
+        <p class="version-tag">Version 1.0.0 | Desktop Optimized</p>
+    </header>
+
+    <main class="container">
+        <div class="col">
+            <label for="input1">Input 1 (Data Utama - misal 150 baris):</label>
+            <textarea id="input1" placeholder="Masukkan 16 digit angka di sini...&#10;Contoh:&#10;1234567890123456&#10;2345678901234567"></textarea>
+        </div>
+
+        <div class="col">
+            <label for="input2">Input 2 (Data Pengecualian - misal 30 baris):</label>
+            <textarea id="input2" placeholder="Masukkan angka yang ingin dihapus dari Data Utama..."></textarea>
+            
+            <button id="processBtn">Proses Pencocokan</button>
+        </div>
+
+        <div class="col">
+            <label for="output">Output 3 (Sisa Baris Data Utama):</label>
+            <textarea id="output" readonly placeholder="Hasil (sisa dari Data Utama) akan muncul di sini..."></textarea>
+            <div id="stats" class="stats"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
