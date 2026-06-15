@@ -1,0 +1,118 @@
+/* Versi Code: v1.0.0 */
+
+:root {
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --primary-color: #bb86fc;
+    --primary-hover: #9965f4;
+    --text-color: #e0e0e0;
+    --text-muted: #888888;
+    --border-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.version-tag {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Layout 3 Kolom untuk Desktop */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 25px;
+    flex: 1;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Desain Textarea Modern */
+textarea {
+    flex: 1;
+    min-height: 400px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace; /* Font monospace baik untuk angka */
+    font-size: 0.95rem;
+    resize: none; /* Mencegah user merusak layout */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+textarea:focus {
+    border-color: var(--primary-color);
+}
+
+textarea[readonly] {
+    background-color: #181818;
+}
+
+/* Desain Tombol */
+button {
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: auto; /* Mendorong tombol ke bawah jika ada sisa ruang */
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.stats {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-align: right;
+    margin-top: -5px;
+}
