@@ -1,13 +1,19 @@
-/* Versi Code: v1.0.0 */
+/* Versi Code: v1.1.0 */
 
 :root {
     --bg-color: #121212;
     --surface-color: #1e1e1e;
     --primary-color: #bb86fc;
     --primary-hover: #9965f4;
+    --secondary-color: #03dac6;
+    --secondary-hover: #01bfa5;
     --text-color: #e0e0e0;
     --text-muted: #888888;
     --border-color: #333333;
+    
+    /* Warna Mark Baru */
+    --mark-red: #cf6679;
+    --mark-green: #4caf50;
 }
 
 * {
@@ -44,7 +50,6 @@ header h1 {
     color: var(--text-muted);
 }
 
-/* Layout 3 Kolom untuk Desktop */
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -64,23 +69,26 @@ label {
     font-size: 0.95rem;
 }
 
-/* Desain Textarea Modern */
-textarea {
+/* Desain Textarea & Div Editable */
+textarea, .custom-textarea {
     flex: 1;
     min-height: 400px;
+    max-height: 500px;
     background-color: var(--surface-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 15px;
-    font-family: 'Courier New', Courier, monospace; /* Font monospace baik untuk angka */
+    font-family: 'Courier New', Courier, monospace;
     font-size: 0.95rem;
-    resize: none; /* Mencegah user merusak layout */
+    resize: none;
     outline: none;
     transition: border-color 0.3s;
+    overflow-y: auto;
+    white-space: pre-wrap;
 }
 
-textarea:focus {
+textarea:focus, .custom-textarea:focus {
     border-color: var(--primary-color);
 }
 
@@ -88,7 +96,23 @@ textarea[readonly] {
     background-color: #181818;
 }
 
-/* Desain Tombol */
+/* Placeholder tiruan untuk div contenteditable jika kosong */
+.custom-textarea:empty:before {
+    content: attr(placeholder);
+    color: var(--text-muted);
+}
+
+/* Kelas khusus untuk penandaan warna (Mark) */
+.match-red {
+    color: var(--mark-red);
+    font-weight: bold;
+}
+
+.nomatch-green {
+    color: var(--mark-green);
+}
+
+/* Desain Tombol Utama */
 button {
     background-color: var(--primary-color);
     color: #000;
@@ -99,7 +123,7 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
-    margin-top: auto; /* Mendorong tombol ke bawah jika ada sisa ruang */
+    margin-top: auto;
 }
 
 button:hover {
@@ -110,9 +134,28 @@ button:active {
     transform: scale(0.98);
 }
 
+/* Tombol Tambahan untuk Salin & Download */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: #000;
+}
+
 .stats {
     font-size: 0.85rem;
     color: var(--primary-color);
     text-align: right;
-    margin-top: -5px;
 }
