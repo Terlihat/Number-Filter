@@ -1,4 +1,4 @@
-// Versi Code: v1.1.0
+// Versi Code: v1.2.0
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnProcess = document.getElementById("processBtn");
@@ -10,12 +10,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const output = document.getElementById("output");
     const stats = document.getElementById("stats");
 
+    // Fungsi untuk menyimpan data ke LocalStorage (Auto Save)
+    const autoSave = () => {
+        localStorage.setItem("nft_input1", input1.innerHTML);
+        localStorage.setItem("nft_input2", input2.value);
+        localStorage.setItem("nft_output", output.value);
+        localStorage.setItem("nft_stats", stats.innerHTML);
+    };
+
+    // Fungsi untuk memuat data dari LocalStorage saat halaman dibuka/refresh
+    const loadSavedData = () => {
+        const savedInput1 = localStorage.getItem("nft_input1");
+        const savedInput2 = localStorage.getItem("nft_input2");
+        const savedOutput = localStorage.getItem("nft_output");
+        const savedStats = localStorage.getItem("nft_stats");
+
+        if (savedInput1) input1.innerHTML = savedInput1;
+        if (savedInput2) input2.value = savedInput2;
+        if (savedOutput) output.value = savedOutput;
+        if (savedStats) stats.innerHTML = savedStats;
+    };
+
+    // Jalankan fungsi load data di awal
+    loadSavedData();
+
+    // Event listener untuk auto-save saat mendeteksi ketikan baru sebelum diproses
+    input1.addEventListener("input", autoSave);
+    input2.addEventListener("input", autoSave);
+
+    // Logika Pencocokan Data
     btnProcess.addEventListener("click", () => {
-        // 1. Ambil teks asli dari div Input 1 (menggunakan innerText agar ganti baris terbaca konsisten)
         const rawData1 = input1.innerText;
         const rawData2 = input2.value;
 
-        // 2. Pecah menjadi array dan bersihkan baris kosong
         const array1 = rawData1.split('\n')
             .map(line => line.trim())
             .filter(line => line !== "");
@@ -29,26 +56,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let markedHTML = "";
         let resultArray = [];
 
-        // 3. Iterasi data utama untuk membuat logika pencocokan warna (Mark)
         array1.forEach((item) => {
             if (set2.has(item)) {
-                // Jika cocok dengan input 2 -> Bungkus dengan warna merah
                 markedHTML += `<div class="match-red">${item}</div>`;
             } else {
-                // Jika tidak cocok dengan input 2 -> Bungkus dengan warna hijau & masukkan ke output
                 markedHTML += `<div class="nomatch-green">${item}</div>`;
                 resultArray.push(item);
             }
         });
 
-        // 4. Ubah tampilan di Input 1 menjadi teks yang sudah diwarnai
         input1.innerHTML = markedHTML;
-
-        // 5. Masukkan sisa data ke Output 3
         output.value = resultArray.join('\n');
 
-        // 6. Perbarui statistik data
-        stats.innerText = `Total awal: ${array1.length} | Cocok (Merah): ${array1.length - resultArray.length} | Sisa (Hijau): ${resultArray.length}`;
+        // Update teks statistik
+        stats.innerHTML = `<strong>Total awal:</strong> ${array1.length} | <strong>Cocok (Merah):</strong> ${array1.length - resultArray.length} | <strong>Sisa (Hijau):</strong> ${resultArray.length}`;
+        
+        // Simpan perubahan setelah proses selesai dilakukan
+        autoSave();
     });
 
     // Fungsi Tombol Salin Teks
@@ -82,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const textBlob = new Blob([textToSave], { type: "text/plain" });
         const textUrl = URL.createObjectURL(textBlob);
         
-        // Membuat elemen link unduhan sementara di memori browser
         const downloadLink = document.createElement("a");
         downloadLink.download = "sisa_angka_output3.txt";
         downloadLink.href = textUrl;
