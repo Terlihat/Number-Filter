@@ -1,17 +1,15 @@
-/* Versi Code: v1.1.0 */
+/* Versi Code: v1.2.0 */
 
 :root {
     --bg-color: #121212;
     --surface-color: #1e1e1e;
     --primary-color: #bb86fc;
     --primary-hover: #9965f4;
-    --secondary-color: #03dac6;
-    --secondary-hover: #01bfa5;
     --text-color: #e0e0e0;
     --text-muted: #888888;
     --border-color: #333333;
     
-    /* Warna Mark Baru */
+    /* Warna Mark */
     --mark-red: #cf6679;
     --mark-green: #4caf50;
 }
@@ -69,7 +67,6 @@ label {
     font-size: 0.95rem;
 }
 
-/* Desain Textarea & Div Editable */
 textarea, .custom-textarea {
     flex: 1;
     min-height: 400px;
@@ -96,13 +93,11 @@ textarea[readonly] {
     background-color: #181818;
 }
 
-/* Placeholder tiruan untuk div contenteditable jika kosong */
 .custom-textarea:empty:before {
     content: attr(placeholder);
     color: var(--text-muted);
 }
 
-/* Kelas khusus untuk penandaan warna (Mark) */
 .match-red {
     color: var(--mark-red);
     font-weight: bold;
@@ -112,8 +107,8 @@ textarea[readonly] {
     color: var(--mark-green);
 }
 
-/* Desain Tombol Utama */
-button {
+/* Desain Tombol Utama & Tombol Aksi (Warna Disamakan) */
+button, .btn-action {
     background-color: var(--primary-color);
     color: #000;
     border: none;
@@ -124,38 +119,38 @@ button {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
     margin-top: auto;
+    width: 100%;
 }
 
-button:hover {
+button:hover, .btn-action:hover {
     background-color: var(--primary-hover);
 }
 
-button:active {
+button:active, .btn-action:active {
     transform: scale(0.98);
 }
 
-/* Tombol Tambahan untuk Salin & Download */
+/* Tata Letak Statistik di atas Tombol */
+.stats {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-align: left;
+    padding: 8px 5px;
+    background-color: rgba(187, 134, 252, 0.05);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* Grid Sejajar untuk Tombol Salin dan Download */
 .action-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    margin-top: 5px;
 }
 
-.btn-secondary {
-    background-color: transparent;
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-    padding: 10px;
-    font-size: 0.9rem;
-}
-
-.btn-secondary:hover {
-    background-color: var(--secondary-color);
-    color: #000;
-}
-
-.stats {
-    font-size: 0.85rem;
-    color: var(--primary-color);
-    text-align: right;
+.btn-action {
+    padding: 12px; /* Sedikit lebih kecil agar proporsional saat berdampingan */
+    font-size: 0.95rem;
 }
