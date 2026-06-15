@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     loadSavedData();
+    
     input1.addEventListener("input", autoSave);
     input2.addEventListener("input", autoSave);
 
@@ -78,8 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const array2 = rawData2.split('\n').map(line => line.trim()).filter(line => line !== "");
 
         const set2 = new Set(array2);
-        
-        // Objek Set untuk menyimpan angka yang sudah muncul di Input 1
         const seenInInput1 = new Set();
         
         let markedHTML = "";
@@ -98,11 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 markedHTML += `<div class="warning-yellow">${item} [Bukan 16 Digit]</div>`;
                 countYellow++;
             } else if (seenInInput1.has(item)) {
-                // Deteksi Duplikat -> Ungu (Jika angka ini sudah pernah dicek sebelumnya)
+                // Deteksi Duplikat -> Ungu 
                 markedHTML += `<div class="duplicate-purple">${item} [Duplikat]</div>`;
                 countPurple++;
             } else {
-                // Tambahkan angka ke daftar "sudah dilihat"
                 seenInInput1.add(item);
                 
                 if (set2.has(item)) {
@@ -121,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input1.innerHTML = markedHTML || "<div></div>"; 
         output.value = resultArray.join('\n');
 
-        // Render Statistik yang diperbarui dengan metrik Ungu
+        // Render Statistik
         stats.innerHTML = `<strong>Total Awal:</strong> ${array1.length} <br>` +
                           `🟩 <strong>Sisa (Hijau):</strong> ${countGreen} | ` +
                           `🟥 <strong>Dihapus (Merah):</strong> ${countRed} <br>` +
