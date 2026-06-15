@@ -12,17 +12,17 @@
 <body>
     <header>
         <h1>Number Filter Tool</h1>
-        <p class="version-tag">Version 1.0.0 | Desktop Optimized</p>
+        <p class="version-tag">Version 1.1.0 | Desktop Optimized</p>
     </header>
 
     <main class="container">
         <div class="col">
-            <label for="input1">Input 1 (Data Utama - misal 150 baris):</label>
-            <textarea id="input1" placeholder="Masukkan 16 digit angka di sini...&#10;Contoh:&#10;1234567890123456&#10;2345678901234567"></textarea>
+            <label for="input1">Input 1 (Data Utama):</label>
+            <div id="input1" class="custom-textarea" contenteditable="true" placeholder="Masukkan 16 digit angka di sini... (Tekan Enter untuk baris baru)"></div>
         </div>
 
         <div class="col">
-            <label for="input2">Input 2 (Data Pengecualian - misal 30 baris):</label>
+            <label for="input2">Input 2 (Data Pengecualian):</label>
             <textarea id="input2" placeholder="Masukkan angka yang ingin dihapus dari Data Utama..."></textarea>
             
             <button id="processBtn">Proses Pencocokan</button>
@@ -30,7 +30,13 @@
 
         <div class="col">
             <label for="output">Output 3 (Sisa Baris Data Utama):</label>
-            <textarea id="output" readonly placeholder="Hasil (sisa dari Data Utama) akan muncul di sini..."></textarea>
+            <textarea id="output" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+            
+            <div class="action-buttons">
+                <button id="copyBtn" class="btn-secondary">Salin Teks</button>
+                <button id="downloadBtn" class="btn-secondary">Unduh (.txt)</button>
+            </div>
+            
             <div id="stats" class="stats"></div>
         </div>
     </main>
