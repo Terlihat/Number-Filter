@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Filter Tool</title>
+    <title>Number Filter Tool - Dark Mode</title>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
@@ -12,27 +12,49 @@
 <body>
     <header>
         <h1>Number Filter Tool</h1>
-        <p class="version-tag">Version 1.2.0 | Desktop Optimized</p>
+        <p class="version-tag">Version 1.3.0 | Desktop Optimized & Feature-Rich</p>
     </header>
 
     <main class="container">
         <div class="col">
-            <label for="input1">Input 1 (Data Utama):</label>
-            <div id="input1" class="custom-textarea" contenteditable="true" placeholder="Masukkan 16 digit angka di sini... (Tekan Enter untuk baris baru)"></div>
+            <div class="col-header">
+                <label for="input1">Input 1 (Data Utama):</label>
+                <div class="header-actions">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="dedupCheck"> Hapus Duplikat
+                    </label>
+                    <button class="btn-small btn-upload" onclick="triggerUpload('fileInput1')">Upload</button>
+                    <button class="btn-small btn-clear" id="clearInput1">Clear</button>
+                </div>
+            </div>
+            <input type="file" id="fileInput1" accept=".txt" style="display:none">
+            <div id="input1" class="custom-textarea" contenteditable="true" placeholder="Masukkan angka di sini atau drop file .txt..."></div>
         </div>
 
         <div class="col">
-            <label for="input2">Input 2 (Data Pengecualian):</label>
-            <textarea id="input2" placeholder="Masukkan angka yang ingin dihapus dari Data Utama..."></textarea>
+            <div class="col-header">
+                <label for="input2">Input 2 (Data Pengecualian):</label>
+                <div class="header-actions">
+                    <button class="btn-small btn-upload" onclick="triggerUpload('fileInput2')">Upload</button>
+                    <button class="btn-small btn-clear" id="clearInput2">Clear</button>
+                </div>
+            </div>
+            <input type="file" id="fileInput2" accept=".txt" style="display:none">
+            <textarea id="input2" placeholder="Masukkan angka yang ingin dieliminasi atau drop file .txt..."></textarea>
             
             <button id="processBtn">Proses Pencocokan</button>
         </div>
 
         <div class="col">
-            <label for="output">Output 3 (Sisa Baris Data Utama):</label>
-            <textarea id="output" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+            <div class="col-header">
+                <label for="output">Output 3 (Sisa Baris Data Utama):</label>
+                <div class="header-actions">
+                    <button class="btn-small btn-clear" id="clearOutput">Clear</button>
+                </div>
+            </div>
+            <textarea id="output" readonly placeholder="Hasil filter akan muncul di sini..."></textarea>
             
-            <div id="stats" class="stats"></div>
+            <div id="stats" class="stats"><strong>Total awal:</strong> 0 | <strong>Cocok (Merah):</strong> 0 | <strong>Sisa (Hijau):</strong> 0</div>
             
             <div class="action-buttons">
                 <button id="copyBtn" class="btn-action">Salin Teks</button>
